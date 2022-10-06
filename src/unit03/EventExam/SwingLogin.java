@@ -49,13 +49,33 @@ public class SwingLogin extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {	
+		
+		// my code
+//		if (e.getSource() == btnLogin) {
+//			if (tfId.getText().equals(""))
+//				lbResult.setText("아이디를 입력하세요.");
+//			else if (new String(tfPwd.getPassword()).equals(""))
+//				lbResult.setText("비밀번호를 입력하세요.");
+//			else
+//				lbResult.setText(tfId.getText() + "님의 비번은 " + new String(tfPwd.getPassword()) + "입니다.");
+//		}
+//		if (e.getSource() == btnCancel) {
+//			lbResult.setText("취소하였습니다");
+//			tfId.setText("");
+//			tfPwd.setText("");
+//		}
+		
+		// other code
 		if (e.getSource() == btnLogin) {
-			if (tfId.getText().equals(""))
-				lbResult.setText("아이디를 입력하세요.");
-			else if (new String(tfPwd.getPassword()).equals(""))
-				lbResult.setText("비밀번호를 입력하세요.");
+			String strId = tfId.getText();
+			String strPwd = new String(tfPwd.getPassword());
+			
+			if (strId.length() == 0)
+				lbResult.setText("아이디를 입력하세요");
+			else if (strPwd.length() == 0)
+				lbResult.setText("비밀번호를 입력하세요");
 			else
-				lbResult.setText(tfId.getText() + "님의 비번은 " + new String(tfPwd.getPassword()) + "입니다.");
+				lbResult.setText(strId + "님의 비번은 " + strPwd + "입니다");
 		}
 		if (e.getSource() == btnCancel) {
 			lbResult.setText("취소하였습니다");
