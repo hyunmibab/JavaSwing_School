@@ -52,13 +52,37 @@ public class GuessNum extends JFrame implements ActionListener{
 	}
 	
 	public int makeRanNum() {
-		return (int)Math.random();
+		return (int)(Math.random() * 100);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnOk) {
+			if (tf.getText().equals("")) {
+				JOptionPane.showMessageDialog(this, "값을 입력하세요");
+				return;
+			}
+			if (Integer.parseInt(tf.getText()) < 0 && Integer.parseInt(tf.getText()) > 99) {
+				JOptionPane.showMessageDialog(this, "입력 데이터 확인 : 숫자 0~99");
+				return;
+			}
+
+			if (Integer.parseInt(tf.getText()) > comNum)
+				ta.append(tf.getText() + ": 너무 큽니다. -" + (cnt + 1) + "회\n");
+			else if (Integer.parseInt(tf.getText()) < comNum)
+				ta.append(tf.getText() + ": 너무 작습니다. -" + (cnt + 1) + "회\n");
+			else if (Integer.parseInt(tf.getText()) == comNum)
+				JOptionPane.showMessageDialog(this, "축하합니다!!");
+			cnt++;
 			
+			if (cnt >= 5)
+				JOptionPane.showMessageDialog(this, "5번의 기회를 모두 사용하셨습니다!!! 정답:" + comNum);
+		}
+		if (e.getSource() == btnSet) {
+			comNum = makeRanNum();
+			cnt = 0;
+			tf.setText("");
+			ta.setText("");
 		}
 	}
 	
