@@ -1,5 +1,6 @@
 package unit03.EventExam;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -17,7 +18,9 @@ public class HelloKeyMove extends JFrame implements KeyListener{
 		contentPane.setLayout(null);
 		contentPane.add(lb);
 		
-		lb.setSize(300, 250);
+		lb.setOpaque(true);
+		lb.setBackground(Color.CYAN);
+		lb.setSize(30, 15);
 		lb.setLocation(50, 50);
 		
 		setTitle("키이벤트 예제");

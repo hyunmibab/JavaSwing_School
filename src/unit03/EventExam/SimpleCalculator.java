@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class SimpleCalculator extends JFrame implements ActionListener{
 
-	int opr = 0;
+	boolean opr = false;
 	JTextField src = new JTextField(10);
 	JTextField res = new JTextField(10);
 	
@@ -52,33 +52,31 @@ public class SimpleCalculator extends JFrame implements ActionListener{
 		if (e.getActionCommand() == "CE") {
 			src.setText("");
 			res.setText("");
-			opr = 0;
+			opr = false;
 		}
-		else if (e.getActionCommand() == "계산" && opr == 1) {
-			int result = 0;
+		else if (e.getActionCommand() == "계산" && opr == true) {
 			for (int i = 0; i < src.getText().length(); ++i) {
 				char nowC = src.getText().charAt(i);
 				if (nowC == '+')
-					result = Integer.parseInt(src.getText().substring(0, i)) + Integer.parseInt(src.getText().substring(i + 1));
+					res.setText(Integer.toString(Integer.parseInt(src.getText().substring(0, i)) + Integer.parseInt(src.getText().substring(i + 1))));
 				if (nowC == '-')
-					result = Integer.parseInt(src.getText().substring(0, i)) - Integer.parseInt(src.getText().substring(i + 1));
+					res.setText(Integer.toString(Integer.parseInt(src.getText().substring(0, i)) - Integer.parseInt(src.getText().substring(i + 1))));
 				if (nowC == '*')
-					result = Integer.parseInt(src.getText().substring(0, i)) * Integer.parseInt(src.getText().substring(i + 1));
+					res.setText(Integer.toString(Integer.parseInt(src.getText().substring(0, i)) * Integer.parseInt(src.getText().substring(i + 1))));
 				if (nowC == '/')
-					result = Integer.parseInt(src.getText().substring(0, i)) / Integer.parseInt(src.getText().substring(i + 1));
+					res.setText(Integer.toString(Integer.parseInt(src.getText().substring(0, i)) / Integer.parseInt(src.getText().substring(i + 1))));
 			}
-			res.setText(Integer.toString(result));
 		}
 		else {
 			for (int i = 0; i < 10; ++i)
 				if (e.getSource() == btn[i]) {
 					src.setText(src.getText() + i);
-					opr = 1;
+					opr = true;
 				}
 			for (int i = 0; i < 4; ++i)
-				if (e.getSource() == btn[i + 12] && opr == 1) {
+				if (e.getActionCommand() == btnNames[i + 2] && opr == true) {
 					src.setText(src.getText() + btnNames[i + 2]);
-					opr = 0;
+					opr = false;
 				}
 		}
 	}
