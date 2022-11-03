@@ -30,8 +30,8 @@ public class HelloKeyEnter extends JFrame implements KeyListener{
 		new HelloKeyEnter();
 	}
 	
-	public int randInt() {
-		return (int)(Math.random() * 1000) % 256;
+	public int randInt(int num) {
+		return (int)(Math.random() * num);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class HelloKeyEnter extends JFrame implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			int r = randInt(), g = randInt(), b = randInt();
+			int r = randInt(256), g = randInt(256), b = randInt(256);
 			contentPane.setBackground(new Color(r, g, b));
 			lb.setText("r = " + r + " g = " + g + "b = " + b);
 		}
